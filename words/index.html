@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e766d">
+  <meta name="description" content="零基础 Python 常用词互动学习：中文解释、可运行例子、翻卡记忆和即时自测。">
+  <title>Python 常用词 · 蓝桥起步练习室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e766d'/%3E%3Ctext x='9' y='43' fill='white' font-size='30' font-family='monospace'%3EPy%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="words.css?v=20261102-1">
+  <script src="words.js?v=20261102-1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#learning">跳到学习内容</a>
+  <header class="site-header">
+    <a href="../" class="brand"><span class="brand-mark" aria-hidden="true">&lt; &gt;</span><span>蓝桥起步练习室<small>Python · 大学 C 组</small></span></a>
+    <a class="back-link" href="../">去练题 <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy"><p class="eyebrow">从看懂一行代码开始</p><h1 id="page-title">把 Python 常用词<br><span>学会，也用起来。</span></h1><p class="intro">每次学 3—5 个词。先看意思，改一行代码，<br class="desktop-break">再用小测检查自己是否理解。</p><div class="hero-tags"><span>零基础友好</span><span>无需登录</span><span>手机 / 电脑</span></div></div>
+      <div class="hero-example" aria-label="一个 Python 例子"><div class="code-top"><span><i></i><i></i><i></i></span><span>first_step.py</span></div><pre><span class="code-comment"># 今天，先认识这三个词</span>
+<span class="code-var">name</span> = <span class="code-function">input</span>()
+<span class="code-function">print</span>(<span class="code-string">"你好，"</span> + <span class="code-var">name</span>)
+<span class="code-function">print</span>(<span class="code-function">len</span>(<span class="code-var">name</span>))</pre><div class="code-legend"><span><b>input</b> 读取</span><span><b>print</b> 输出</span><span><b>len</b> 长度</span></div></div>
+    </section>
+    <section class="progress-strip" aria-label="我的学习记录"><div><span class="stat-number" id="total-count">75</span><span>个词语与符号</span></div><div><span class="stat-number" id="known-count">0</span><span>个自评已记住</span></div><div><span class="stat-number" id="review-count">0</span><span>个待复习</span></div><div class="progress-message"><strong id="progress-message">先学会 10 个入门词</strong><span>不必一次背完，边练边查。</span></div></section>
+    <div id="storage-warning" class="notice" role="status" hidden></div>
+    <div id="load-error" class="notice" role="alert" hidden>词库暂时没有加载成功，请刷新页面重试。</div>
+    <section class="learning" id="learning" aria-label="互动学习">
+      <div class="mode-nav" aria-label="学习方式"><button class="mode active" data-mode="learn" aria-pressed="true"><span>01</span> 查词学习</button><button class="mode" data-mode="flash" aria-pressed="false"><span>02</span> 翻卡记忆</button><button class="mode" data-mode="quiz" aria-pressed="false"><span>03</span> 闯关自测</button></div>
+      <div class="filter-area">
+        <div class="filter-heading"><h2>今天学哪些？</h2><label class="search-box"><span class="sr-only">搜索英文、中文或报错名称</span><span aria-hidden="true">⌕</span><input type="search" id="search" placeholder="搜英文、中文或报错名称" autocomplete="off"></label></div>
+        <div class="category-list" id="categories" aria-label="词语分类"></div>
+        <div class="filter-bottom"><label><input type="checkbox" id="review-only"> 只看待复习</label><span id="match-count" role="status">正在准备词库…</span></div>
+      </div>
+      <section id="learn-panel" aria-label="查词学习">
+        <div class="learn-layout"><div class="word-list" id="word-list" aria-label="词语列表"></div><article class="detail" id="detail" tabindex="-1"></article></div>
+      </section>
+      <section id="flash-panel" aria-label="翻卡记忆" hidden></section>
+      <section id="quiz-panel" aria-label="闯关自测" hidden></section>
+    </section>
+    <section class="learning-note"><span class="note-mark" aria-hidden="true">i</span><div><h2>认识这些词，比死记英文更重要</h2><p>这里包括关键字、内置函数、类型、方法、异常名称和符号；它们并不全是 Python 关键字。<code>n</code>、<code>total</code>、<code>nums</code> 等则是自己起的变量名。看到报错时，先读最后一行的错误名称，再检查对应行。</p></div></section>
+    <footer><div><strong>学习记录保存在当前浏览器</strong><p>不会自动跨设备同步。可导出备份后在另一台设备导入；本页记录与练题进度分别保存。</p><div class="record-actions"><button id="export-progress">导出词语记录</button><button id="import-progress">导入词语记录</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></div><div class="footer-links"><a href="../">返回练题室 ↗</a><a href="https://docs.python.org/zh-cn/3/tutorial/" target="_blank" rel="noopener">Python 官方教程 ↗</a><span>原创入门辅导 · 非官方试题</span></div></footer>
+  </main>
+  <div id="toast" role="status" hidden></div>
+  <noscript><p class="notice">这个互动页面需要浏览器启用 JavaScript。</p></noscript>
+</body>
+</html>
