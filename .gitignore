@@ -1,0 +1,5 @@
+qa/
+.env
+.env.*
+.edgeone/
+.DS_Store

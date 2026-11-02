@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e766d"><meta name="description" content="面向零基础的大学C组Python练习室：短课、代码编辑、运行检查、分步提示与复做记录。">
+<title>蓝桥起步练习室 · Python 大学 C 组</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230e766d'/%3E%3Cpath d='M25 20 13 32l12 12m14-24 12 12-12 12' fill='none' stroke='white' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+ <button class="icon-button" id="menuToggle" aria-label="打开课程目录" aria-expanded="false">☰</button>
+ <a href="#" class="brand" id="home"><span class="brand-icon">&lt; &gt;</span><span>蓝桥起步练习室<small>Python · 大学 C 组</small></span></a>
+ <div class="top-actions"><span class="local-note">进度保存在本机</span><button id="exportBtn" class="text-button">备份进度</button><button id="importBtn" class="text-button">导入</button><input id="importFile" type="file" accept="application/json,.json" hidden></div>
+</header>
+<div id="storageWarning" class="warning" hidden></div>
+<div id="overlay" class="overlay" hidden></div>
+<aside id="sidebar" class="sidebar" aria-label="课程目录">
+ <div class="progress-card"><span class="eyebrow">一步一步，把代码写出来</span><div><strong id="progressNumber">0</strong><span> / 60 已通过</span></div><progress id="progressBar" max="60" value="0" aria-label="练习进度"></progress><p id="progressNote">先从 10 个短课开始，每次学一点。</p></div>
+ <div class="nav-filters"><button id="allFilter" class="active">全部课程</button><button id="reviewFilter">待复做 <span id="reviewCount">0</span></button></div>
+ <label class="search-label" for="search">查找题目</label><input id="search" type="search" placeholder="题号、题名或知识点">
+ <nav id="courseNav" aria-label="题目列表"></nav>
+ <p class="sidebar-note">10 个入门短课 + 50 道原创训练题。<br>练习检查不等同于官方评测。</p>
+</aside>
+<main id="main">
+ <div class="lesson-heading"><div><div class="breadcrumbs" id="breadcrumbs">正在准备课程…</div><h1 id="lessonTitle">从第一行 Python 开始</h1><p id="lessonMeta">无需安装软件，在这里直接动手。</p></div><span id="lessonStatus" class="status-pill">未开始</span></div>
+ <div class="mobile-tabs" role="tablist" aria-label="练习区域"><button role="tab" id="learnTab" aria-selected="true">1 学一学</button><button role="tab" id="codeTab" aria-selected="false">2 动手练</button></div>
+ <div class="workspace">
+  <section id="learnPane" class="learn-pane panel" aria-label="讲解与题目">
+   <div class="section-top"><span class="step-dot">1</span><h2 id="concept">学一学</h2><span class="time-pill" id="minutes"></span></div>
+   <div id="learnText" class="learn-text"></div>
+   <div class="example-block"><span>观察一个例子</span><pre id="exampleCode"></pre></div>
+   <div class="task-heading"><span class="step-dot">2</span><h2>这次你来写</h2></div><p id="statement"></p>
+   <div id="ioDetails"><p><b>输入：</b><span id="inputFormat"></span></p><p><b>输出：</b><span id="outputFormat"></span></p><p class="muted" id="limits"></p></div>
+   <div id="samples" class="samples"></div>
+   <div class="help-area"><div><h3>卡住了？先看一点提示</h3><button id="hintBtn" class="secondary small">给我一个提示</button></div><ol id="hints"></ol><p id="hintNote" class="muted">提示会记录为辅助完成，练熟后再独立做一次。</p></div>
+   <button id="solutionBtn" class="text-button solution-toggle">查看解析与参考写法</button>
+   <div id="solution" hidden><p id="idea"></p><p id="pitfall" class="muted"></p><pre id="referenceCode"></pre><button id="loadSolutionBtn" class="secondary small">载入参考代码试运行</button><p class="muted">载入后通过会记为“提示后通过”。建议关闭解析，再独立重写。</p></div>
+   <button id="goCode" class="primary mobile-only">去动手练 →</button>
+  </section>
+  <section id="codePane" class="code-pane panel" aria-label="代码与检查">
+   <div class="editor-top"><div><span class="file-dot"></span><strong id="codeFilename">练习.py</strong></div><span id="saveStatus">自动保存</span><button id="resetBtn" class="text-button">重新练习</button></div>
+   <div class="editor-wrap"><pre id="lineNumbers" aria-hidden="true">1</pre><textarea id="editor" aria-label="Python 代码编辑器" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea></div>
+   <div class="code-keys" aria-label="快捷输入"><button data-insert="    ">缩进</button><button data-insert="()">( )</button><button data-insert="&quot;&quot;">&quot; &quot;</button><button data-insert=":">:</button><button data-insert="=">=</button><button data-insert="[]">[ ]</button><button data-insert="+">+</button><button data-insert="_">_</button><button id="undoBtn">撤销</button></div>
+   <div class="input-area"><div><label for="stdin">输入数据 <span>每个 input() 读取一行</span></label><button id="sampleBtn" class="text-button">恢复样例输入</button></div><textarea id="stdin" rows="3" aria-label="运行时的输入数据" spellcheck="false" placeholder="这道题不需要输入时，留空即可"></textarea></div>
+   <div class="runbar"><div class="runtime-state" id="runtimeState" role="status"><i></i><span>正在准备 Python…</span></div><div class="run-buttons"><button id="stopBtn" class="secondary" hidden>停止</button><button id="runBtn" class="secondary" disabled>▷ 运行看看</button><button id="checkBtn" class="primary" disabled>✓ 检查答案</button></div></div>
+   <div class="result-area" aria-live="polite" aria-atomic="true"><div class="result-heading"><h2 id="resultTitle">准备好，就运行一次</h2><span id="resultBadge"></span></div><p id="resultMessage">先把代码写出来。运行看看显示当前输入的结果；检查答案会自动换几组数据。</p><pre id="resultOutput" hidden></pre><div id="diff" hidden><div><span>出错时的输入</span><pre id="failInput"></pre></div><div><span>预期结果</span><pre id="expected"></pre></div><div><span>你的结果</span><pre id="actual"></pre></div></div><div id="passActions" hidden><button id="nextBtn" class="primary">继续下一题 →</button><span>已安排 2 天后复做</span></div></div>
+   <p class="practice-note">运行结果在浏览器里计算。代码与进度保存在当前浏览器，可用“备份进度”在设备间转移。检查以输出结果为准。</p>
+  </section>
+ </div>
+ <footer><span>先理解，再独立完成。比一口气刷完更重要。</span><a href="https://www.lanqiao.cn/paper/" target="_blank" rel="noopener">官方真题入口 ↗</a></footer>
+</main>
+<div id="toast" role="status" hidden></div>
+<script src="app.js" defer></script>
+</body></html>
